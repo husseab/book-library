@@ -4,7 +4,11 @@
   "description": "book-library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "node scripts/create-database.js",
+    "start": "nodemon -r dotenv/config index",
+    "pretest": "node scripts/create-database.js test",
+    "test": "NODE_ENV=test mocha tests/**/*.js --exit --recursive --timeout 60000 --file ./tests/test-setup.js",
+    "posttest": "node scripts/drop-database.js"
   },
   "repository": {
     "type": "git",
