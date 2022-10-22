@@ -34,15 +34,15 @@ exports.update = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-  const bookId = req.params
-  try {
-    const deletedRows = await Book.destroy({ where: bookId })
-    if (!deletedRows) {
-      res.status(404).json({ error: 'The book could not be found.' })
-    } else {
-      res.status(204).send()
+    const bookId = req.params
+    try {
+      const deletedRows = await Book.destroy({ where: bookId })
+      if (!deletedRows) {
+        res.status(404).json({ error: 'The book could not be found.' })
+      } else {
+        res.status(204).send()
+      }
+    } catch (err) {
+      res.sendStatus(500)
     }
-  } catch (err) {
-    res.sendStatus(500)
   }
-}
