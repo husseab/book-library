@@ -11,15 +11,12 @@ exports.read = async (_, res) => {
 exports.readById = async (req, res) => {
   const readerId = req.params.id
 
-  console.log(req.params, '<-req.paramsCntrl')
-  console.log(readerId, '<-readerIdCntrl')
-
-  const reader = await Reader.findByPK(readerId)
-
-  console.log(reader, '<-readerController')
+  const reader = await Reader.findByPk(readerId, {
+    raw: true,
+  });
 
   if (!reader) {
-    res.sendStatus(404)
+    res.status(404).json({ error: 'The reader could not be found.' })
   } else {
     res.status(200).json(reader)
   }
@@ -29,9 +26,8 @@ exports.update = async (req, res) => {
   const readerId = req.params
 
   const [updatedRows] = await Reader.update(updateData, { where: readerId })
-  console.log(updatedRows, '<-updatedrows')
   if (!updatedRows) {
-    res.sendStatus(404).send(err)
+    res.status(404).json({ error: 'The reader could not be found.' })
   } else {
     res.status(200).send()
   }
@@ -39,12 +35,10 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   const readerId = req.params
-  console.log(readerId, '<-readerIdCntrl')
   try {
     const deletedRows = await Reader.destroy({ where: readerId })
-    console.log(deletedRows, '<-deletedrows')
     if (!deletedRows) {
-      res.sendStatus(404)
+      res.status(404).json({ error: 'The reader could not be found.' })
     } else {
       res.status(204).send()
     }
