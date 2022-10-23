@@ -9,9 +9,9 @@ module.exports = (connection, DataTypes) => {
     type: DataTypes.STRING,
   },
   password: {
-    type: DataTypes.STRING(8, 20),
+    type: DataTypes.STRING,
     validate: {
-      is: /^[0-9a-z]{8, 20}$/i
+      is: /^[0-9a-z]{8,}$/i
     }
   },
   };

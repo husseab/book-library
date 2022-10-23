@@ -15,7 +15,8 @@ describe('/readers', () => {
       it('creates a new reader in the database', async () => {
         const response = await request(app).post('/readers').send({
           name: 'Elizabeth Bennet',
-          email: 'future_ms_darcy@gmail.com'
+          email: 'future_ms_darcy@gmail.com',
+          password: 'testpassword123'
         })
         const newReaderRecord = await Reader.findByPk(response.body.id, {
           raw: true
@@ -31,10 +32,22 @@ describe('/readers', () => {
       it('does not accept the email format', async () => {
         const response = await request(app).post('/readers').send({
           name: 'Elizabeth Bennet',
-          email: 'future_ms_darcygmail.com'
+          email: 'future_ms_darcygmail.com',
+          password: 'testpassword123'
         })
         expect(response.status).to.equal(401)
         expect(response.body.error).to.equal('The email is in incorrect format')
+      })
+    })
+    describe('Validator Test', () => {
+      it('Password not suitable', async () => {
+        const response = await request(app).post('/readers').send({
+          name: 'Elizabeth Bennet',
+          email: 'future_ms_darcy@gmail.com',
+          password: 'test123'
+        })
+        expect(response.status).to.equal(401)
+        expect(response.body.error).to.equal('The password is in incorrect format')
       })
     })
   })
