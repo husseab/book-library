@@ -1,8 +1,13 @@
 const { Reader } = require('../models')
+const validator = require('validator')
 
 exports.create = async (req, res) => {
   const newReader = await Reader.create(req.body)
-  res.status(201).json(newReader)
+  if (!validator.isEmail(newReader.email)) {
+    res.status(401).json({ error: 'The email is in incorrect format' })
+  } else {
+    res.status(201).json(newReader)
+  }
 }
 exports.read = async (_, res) => {
   const readers = await Reader.findAll()
@@ -12,8 +17,8 @@ exports.readById = async (req, res) => {
   const readerId = req.params.id
 
   const reader = await Reader.findByPk(readerId, {
-    raw: true,
-  });
+    raw: true
+  })
 
   if (!reader) {
     res.status(404).json({ error: 'The reader could not be found.' })
