@@ -46,8 +46,15 @@ describe('/readers', () => {
           email: 'future_ms_darcy@gmail.com',
           password: 'test123'
         })
-        expect(response.status).to.equal(401)
-        expect(response.body.error).to.equal('The password is in incorrect format')
+        const getMessage = (path, errors) => {
+          const test1 = response.body.errors.map(msg => {
+            if (msg.path == path) { return msg.message }
+          })
+          const test2 = test1.filter(function (messages) { return messages !== undefined })
+          return test2.join()
+        }
+        expect(response.status).to.equal(500)
+        expect(getMessage('password', [response.body.errors])).to.equal('The password length should be between 8 and 40 characters.')
       })
     })
   })
