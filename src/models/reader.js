@@ -2,8 +2,12 @@ module.exports = (connection, DataTypes) => {
   const schema = {
     email: {
       type: DataTypes.STRING,
-      isEmail: true
-
+      validate: {
+        isEmail: {
+          args: true,
+          msg: 'The email is in incorrect format.'
+        }
+      }
     },
     name: {
       type: DataTypes.STRING

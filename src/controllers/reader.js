@@ -1,21 +1,14 @@
 const { Reader } = require('../models')
-const validator = require('validator')
 
 exports.create = async (req, res) => {
   try {
     const newReader = await Reader.create(req.body)
-
-    if (!validator.isEmail(newReader.email) && validator.isLength(req.body.password)) {
-      res.status(401).json({ error: 'The email is in incorrect format' })
-    } else if (validator.isEmail(newReader.email) && !validator.isLength(req.body.password)) {
-      res.status(402).json({ error: 'The password is in incorrect format' })
-    } else {
-      res.status(201).json(newReader)
-    }
+    res.status(201).json(newReader)
   } catch (err) {
     res.status(500).json(err)
   }
 }
+
 exports.read = async (_, res) => {
   const readers = await Reader.findAll()
   res.status(200).json(readers)

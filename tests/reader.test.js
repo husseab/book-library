@@ -28,18 +28,25 @@ describe('/readers', () => {
         expect(newReaderRecord.email).to.equal('future_ms_darcy@gmail.com')
       })
     })
-    describe('Validator Test', () => {
+    describe('>----EMAIL Test-----<', () => {
       it('does not accept the email format', async () => {
         const response = await request(app).post('/readers').send({
           name: 'Elizabeth Bennet',
           email: 'future_ms_darcygmail.com',
           password: 'testpassword123'
         })
-        expect(response.status).to.equal(401)
-        expect(response.body.error).to.equal('The email is in incorrect format')
+        const getMessage = (path, errors) => {
+          const test1 = response.body.errors.map(msg => {
+            if (msg.path == path) { return msg.message }
+          })
+          const test2 = test1.filter(function (messages) { return messages !== undefined })
+          return test2.join()
+        }
+        expect(response.status).to.equal(500)
+        expect(getMessage('email', [response.body.errors])).to.equal('The email is in incorrect format.')
       })
     })
-    describe('Validator Test', () => {
+    describe('>----PASSWORD Test-----<', () => {
       it('Password not suitable', async () => {
         const response = await request(app).post('/readers').send({
           name: 'Elizabeth Bennet',
