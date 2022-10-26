@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     res.status(201).json(newReader)
   } catch (error) {
     const errorMessages = error.errors.map((e) => e.message);
-    res.status(500).json({ errors: errorMessages });
+    res.status(404).json({ errors: errorMessages });
   }
 }
 

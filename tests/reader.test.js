@@ -36,7 +36,7 @@ describe('/readers', () => {
           password: 'testpassword123'
         })
 
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(404)
         expect(response.body.errors.toString()).to.equal('The email is in incorrect format.')
       })
     })
@@ -48,7 +48,7 @@ describe('/readers', () => {
           password: 'test123'
         })
 
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(404)
         expect(response.body.errors.toString()).to.equal('The password length should be between 8 and 40 characters.')
       })
     })

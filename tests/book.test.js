@@ -39,7 +39,7 @@ describe('/books', () => {
           raw: true
         })
 
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(404)
         expect(newBookRecord).to.equal(null)
         expect(response.body.errors.toString()).to.equal('Insert title name')
       })
@@ -54,7 +54,7 @@ describe('/books', () => {
           raw: true
         })
 
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(404)
         expect(newBookRecord).to.equal(null)
         expect(response.body.errors.toString()).to.equal('Insert author name')
       })
