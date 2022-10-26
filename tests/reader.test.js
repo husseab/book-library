@@ -35,15 +35,9 @@ describe('/readers', () => {
           email: 'future_ms_darcygmail.com',
           password: 'testpassword123'
         })
-        const getMessage = (path, errors) => {
-          const test1 = response.body.errors.map(msg => {
-            if (msg.path == path) { return msg.message }
-          })
-          const test2 = test1.filter(function (messages) { return messages !== undefined })
-          return test2.join()
-        }
+
         expect(response.status).to.equal(500)
-        expect(getMessage('email', [response.body.errors])).to.equal('The email is in incorrect format.')
+        expect(response.body.errors.toString()).to.equal('The email is in incorrect format.')
       })
     })
     describe('>----PASSWORD Test-----<', () => {
@@ -53,15 +47,9 @@ describe('/readers', () => {
           email: 'future_ms_darcy@gmail.com',
           password: 'test123'
         })
-        const getMessage = (path, errors) => {
-          const test1 = response.body.errors.map(msg => {
-            if (msg.path == path) { return msg.message }
-          })
-          const test2 = test1.filter(function (messages) { return messages !== undefined })
-          return test2.join()
-        }
+
         expect(response.status).to.equal(500)
-        expect(getMessage('password', [response.body.errors])).to.equal('The password length should be between 8 and 40 characters.')
+        expect(response.body.errors.toString()).to.equal('The password length should be between 8 and 40 characters.')
       })
     })
   })

@@ -4,8 +4,9 @@ exports.create = async (req, res) => {
   try {
     const newReader = await Reader.create(req.body)
     res.status(201).json(newReader)
-  } catch (err) {
-    res.status(500).json(err)
+  } catch (error) {
+    const errorMessages = error.errors.map((e) => e.message);
+    res.status(500).json({ errors: errorMessages });
   }
 }
 
