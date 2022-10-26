@@ -73,10 +73,11 @@ describe('/readers', () => {
       readers = await Promise.all([
         Reader.create({
           name: 'Elizabeth Bennet',
-          email: 'future_ms_darcy@gmail.com'
+          email: 'future_ms_darcy@gmail.com',
+          password: 'testpassword123'
         }),
-        Reader.create({ name: 'Arya Stark', email: 'vmorgul@me.com' }),
-        Reader.create({ name: 'Lyra Belacqua', email: 'darknorth123@msn.org' })
+        Reader.create({ name: 'Arya Stark', email: 'vmorgul@me.com', password: 'testpassword123' }),
+        Reader.create({ name: 'Lyra Belacqua', email: 'darknorth123@msn.org', password: 'testpassword123' })
       ])
     })
 

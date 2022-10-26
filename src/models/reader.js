@@ -2,6 +2,7 @@ module.exports = (connection, DataTypes) => {
   const schema = {
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         isEmail: {
           args: true,
@@ -10,10 +11,12 @@ module.exports = (connection, DataTypes) => {
       }
     },
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         len: {
           args: [8, 40],

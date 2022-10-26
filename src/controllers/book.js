@@ -1,8 +1,12 @@
 const { Book } = require('../models')
 
 exports.create = async (req, res) => {
-  const newBook = await Book.create(req.body)
-  res.status(201).json(newBook)
+  try {
+    const newBook = await Book.create(req.body)
+    res.status(201).json(newBook)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 }
 exports.read = async (_, res) => {
   const books = await Book.findAll()
@@ -12,8 +16,8 @@ exports.readById = async (req, res) => {
   const bookId = req.params.id
 
   const book = await Book.findByPk(bookId, {
-    raw: true,
-  });
+    raw: true
+  })
 
   if (!book) {
     res.status(404).json({ error: 'The book could not be found.' })
@@ -34,15 +38,15 @@ exports.update = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    const bookId = req.params
-    try {
-      const deletedRows = await Book.destroy({ where: bookId })
-      if (!deletedRows) {
-        res.status(404).json({ error: 'The book could not be found.' })
-      } else {
-        res.status(204).send()
-      }
-    } catch (err) {
-      res.sendStatus(500)
+  const bookId = req.params
+  try {
+    const deletedRows = await Book.destroy({ where: bookId })
+    if (!deletedRows) {
+      res.status(404).json({ error: 'The book could not be found.' })
+    } else {
+      res.status(204).send()
     }
+  } catch (err) {
+    res.sendStatus(500)
   }
+}
