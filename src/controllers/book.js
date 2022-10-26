@@ -1,12 +1,13 @@
 const { Book } = require('../models')
+const createItem = require('../controllers/helpers')
 
 exports.create = async (req, res) => {
   try {
     const newBook = await Book.create(req.body)
     res.status(201).json(newBook)
   } catch (error) {
-    const errorMessages = error.errors.map((e) => e.message);
-    res.status(404).json({ errors: errorMessages });
+    const errorMessages = error.errors.map((e) => e.message)
+    res.status(404).json({ errors: errorMessages })
   }
 }
 exports.read = async (_, res) => {
