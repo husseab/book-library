@@ -1,12 +1,15 @@
-const express = require('express');
-const readerController = require('../controllers/reader');
+const express = require('express')
+const readerController = require('../controllers/reader')
 
-const router = express.Router();
+const router = express.Router()
 
-router.post('/', readerController.create);
-router.get('/', readerController.read);
-router.get('/:id', readerController.readById);
-router.patch('/:id', readerController.update);
-router.delete('/:id', readerController.delete);
+router.route('/') 
+  .post(readerController.createReader)
+  .get(readerController.findAllReaders)
 
-module.exports = router;
+router.route('/:id')
+  .get(readerController.findReadersById)
+  .patch(readerController.updateReaders)
+  .delete(readerController.deleteReader)
+
+module.exports = router
