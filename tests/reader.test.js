@@ -25,6 +25,7 @@ describe('/readers', () => {
         expect(response.status).to.equal(201)
         expect(response.body.name).to.equal('Elizabeth Bennet')
         expect(newReaderRecord.name).to.equal('Elizabeth Bennet')
+        expect(response.body.password).to.equal(undefined)
         expect(newReaderRecord.email).to.equal('future_ms_darcy@gmail.com')
       })
     })
@@ -51,6 +52,20 @@ describe('/readers', () => {
         expect(response.status).to.equal(404)
         expect(response.body.errors.toString()).to.equal('The password length should be between 8 and 40 characters.')
       })
+    })
+    it('errors if an email or password are in the wrong format', async () => {
+      const response = await request(app).post('/readers').send({
+        name: 'Elizabeth Bennet',
+        email: 'future_ms_darcygmail.com',
+        password: '123'
+      })
+      const newReaderRecord = await Reader.findByPk(response.body.id, {
+        raw: true
+      })
+
+      expect(response.status).to.equal(404)
+      expect(response.body.errors.length).to.equal(2)
+      expect(newReaderRecord).to.equal(null)
     })
   })
 

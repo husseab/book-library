@@ -2,7 +2,12 @@ module.exports = (connection, DataTypes) => {
   const schema = {
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
+        notNull: {
+          args: true,
+          msg: 'We need a book title'
+        },
         notEmpty: {
           args: true,
           msg: 'Insert title name'
@@ -11,7 +16,12 @@ module.exports = (connection, DataTypes) => {
     },
     author: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
+        notNull: {
+          args: true,
+          msg: 'We need a book author'
+        },
         notEmpty: {
           args: true,
           msg: 'Insert author name'
