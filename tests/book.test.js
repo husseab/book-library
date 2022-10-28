@@ -43,21 +43,6 @@ describe('/books', () => {
         expect(newBookRecord).to.equal(null)
         expect(response.body.errors.toString()).to.equal('Insert title name')
       })
-      it('does not create a new Book in the database--no author', async () => {
-        const response = await request(app).post('/books').send({
-          title: 'Best title',
-          author: '',
-          genre: 'Fiction',
-          ISBN: '111-11111-1-111'
-        })
-        const newBookRecord = await Book.findByPk(response.body.id, {
-          raw: true
-        })
-
-        expect(response.status).to.equal(404)
-        expect(newBookRecord).to.equal(null)
-        expect(response.body.errors.toString()).to.equal('Insert author name')
-      })
       it('does not create a new Book in the database--NULL', async () => {
         const response = await request(app).post('/books').send({
           title: null,
