@@ -6,7 +6,7 @@ module.exports = (connection, DataTypes) => {
       validate: {
         notNull: {
           args: true,
-          msg: 'We need a book author'
+          msg: 'We need author name'
         },
         notEmpty: {
           args: true,

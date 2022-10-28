@@ -1,11 +1,13 @@
-const { Book, Reader } = require('../models')
+const { Book, Reader, Author, Genre } = require('../models')
 
 const get404Error = (model) => ({ error: `The ${model} could not be found.` })
 
 const getModel = (model) => {
   const models = {
     book: Book,
-    reader: Reader
+    reader: Reader,
+    author: Author,
+    genre: Genre
   }
 
   return models[model]
