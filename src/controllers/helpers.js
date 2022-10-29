@@ -23,13 +23,28 @@ const removePassword = (obj) => {
 
 const getAllItems = (res, model) => {
   const Model = getModel(model)
-
-  return Model.findAll().then((items) => {
-    const itemsWithoutPassword = items.map((item) =>
-      removePassword(item.dataValues)
-    )
-    res.status(200).json(itemsWithoutPassword)
-  })
+  if (Model === Genre) {
+    return Model.findAll({ include: Book }).then((items) => {
+      const itemsWithoutPassword = items.map((item) =>
+        removePassword(item.dataValues)
+      )
+      res.status(200).json(itemsWithoutPassword)
+    })
+  } else if (Model === Book) {
+    return Model.findAll({ include: Genre }).then((items) => {
+      const itemsWithoutPassword = items.map((item) =>
+        removePassword(item.dataValues)
+      )
+      res.status(200).json(itemsWithoutPassword)
+    })
+  } else {
+    return Model.findAll().then((items) => {
+      const itemsWithoutPassword = items.map((item) =>
+        removePassword(item.dataValues)
+      )
+      res.status(200).json(itemsWithoutPassword)
+    })
+  }
 }
 
 const createItem = (res, model, item) => {
@@ -67,16 +82,37 @@ const updateItem = (res, model, item, id) => {
 
 const getItemById = (res, model, id) => {
   const Model = getModel(model)
+  if (Model === Book) {
+    return Model.findByPk(id, { include: Genre }).then((item) => {
+      if (!item) {
+        res.status(404).json(get404Error(model))
+      } else {
+        const itemWithoutPassword = removePassword(item.dataValues)
 
-  return Model.findByPk(id).then((item) => {
-    if (!item) {
-      res.status(404).json(get404Error(model))
-    } else {
-      const itemWithoutPassword = removePassword(item.dataValues)
+        res.status(200).json(itemWithoutPassword)
+      }
+    })
+  } else if (Model === Genre) {
+    return Model.findByPk(id, { include: Book }).then((item) => {
+      if (!item) {
+        res.status(404).json(get404Error(model))
+      } else {
+        const itemWithoutPassword = removePassword(item.dataValues)
 
-      res.status(200).json(itemWithoutPassword)
-    }
-  })
+        res.status(200).json(itemWithoutPassword)
+      }
+    })
+  } else {
+    return Model.findByPk(id).then((item) => {
+      if (!item) {
+        res.status(404).json(get404Error(model))
+      } else {
+        const itemWithoutPassword = removePassword(item.dataValues)
+
+        res.status(200).json(itemWithoutPassword)
+      }
+    })
+  }
 }
 
 const deleteItem = (res, model, id) => {

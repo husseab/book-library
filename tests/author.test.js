@@ -85,11 +85,11 @@ describe('/authors', () => {
 
     describe('GET /authors/:id', () => {
       it('gets authors record by id', async () => {
-        const author = authors[0]
-        const response = await request(app).get(`/authors/${author.id}`)
+        const authorItem = authors[0]
+        const response = await request(app).get(`/authors/${authorItem.id}`)
 
         expect(response.status).to.equal(200)
-        expect(response.body.author).to.equal(author.author)
+        expect(response.body.author).to.equal(authorItem.author)
       })
 
       it('returns a 404 if the genre does not exist', async () => {
@@ -102,11 +102,11 @@ describe('/authors', () => {
 
     describe('PATCH /authors/:id', () => {
       it('updates authors name by id', async () => {
-        const author = authors[0]
+        const authorItem = authors[0]
         const response = await request(app)
-          .patch(`/authors/${author.id}`)
+          .patch(`/authors/${authorItem.id}`)
           .send({ author: 'UpdatedAuthor' })
-        const updatedAuthorRecord = await Author.findByPk(author.id, {
+        const updatedAuthorRecord = await Author.findByPk(authorItem.id, {
           raw: true
         })
 
@@ -126,9 +126,9 @@ describe('/authors', () => {
 
     describe('DELETE /authors/:id', () => {
       it('deletes author record by id', async () => {
-        const author = authors[0]
-        const response = await request(app).delete(`/authors/${author.id}`)
-        const deletedAuthor = await Author.findByPk(author.id, { raw: true })
+        const authorItem = authors[0]
+        const response = await request(app).delete(`/authors/${authorItem.id}`)
+        const deletedAuthor = await Author.findByPk(authorItem.id, { raw: true })
 
         expect(response.status).to.equal(204)
         expect(deletedAuthor).to.equal(null)
