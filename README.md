@@ -1,1 +1,1 @@
-This is a book library API.
+This is a book library application.

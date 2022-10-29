@@ -72,8 +72,11 @@ describe('/genre', () => {
       it('gets all genre records', async () => {
         const response = await request(app).get('/genre')
 
+        const getBooks = response.body.map((e) => e.Books)
+
         expect(response.status).to.equal(200)
         expect(response.body.length).to.equal(3)
+        expect(getBooks).to.not.equal(undefined)
 
         response.body.forEach((genreType) => {
           const expected = genreArray.find((a) => a.id === genreType.id)
