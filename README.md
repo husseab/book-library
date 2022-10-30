@@ -79,7 +79,9 @@ $ npm i -D mocha chai supertest
 
 ## Using the app
 
-To start the app on your localhost use ```json
+To start the app on your localhost use 
+```json
 $ npm start 
 ```
+
 
