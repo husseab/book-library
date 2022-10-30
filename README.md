@@ -1,1 +1,1 @@
-This is a book library application.
+This is a book-library application.
