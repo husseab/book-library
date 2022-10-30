@@ -6,10 +6,10 @@ This app is public on Github and is also deployed on Render. On the link use /bo
 
 ## Dependencies used
 
--   "express": "^4.18.2",
-    "pg": "^8.8.0",
-    "sequelize": "^6.25.3",
-    "validator": "^13.7.0"
+  - "express": "^4.18.2",
+  - "pg": "^8.8.0",
+  - "sequelize": "^6.25.3",
+  - "validator": "^13.7.0"
 
 ### DevDependencies used
 
