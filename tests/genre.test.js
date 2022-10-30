@@ -69,7 +69,7 @@ describe('/genre', () => {
     })
 
     describe('GET /genre', () => {
-      it('gets all genre records', async () => {
+      it('gets all genre records with related books', async () => {
         const response = await request(app).get('/genres')
 
         const getBooks = response.body.map((e) => e.Books)
@@ -87,12 +87,12 @@ describe('/genre', () => {
     })
 
     describe('GET /genre/:id', () => {
-      it('gets genre record by id', async () => {
+      it('gets genre record by id with related books', async () => {
         const genreItem = genreArray[0]
         const response = await request(app).get(`/genres/${genreItem.id}`)
-
         expect(response.status).to.equal(200)
         expect(response.body.genre).to.equal(genreItem.genre)
+        expect(response.body.Books).to.not.equal(undefined)
       })
 
       it('returns a 404 if the genre does not exist', async () => {

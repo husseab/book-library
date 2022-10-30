@@ -69,27 +69,30 @@ describe('/authors', () => {
     })
 
     describe('GET /authors', () => {
-      it('gets all author records', async () => {
+      it('gets all author records with books', async () => {
         const response = await request(app).get('/authors')
 
         expect(response.status).to.equal(200)
         expect(response.body.length).to.equal(3)
 
-        response.body.forEach((author) => {
-          const expected = authors.find((a) => a.id === author.id)
+        response.body.forEach((authorItem) => {
+          const expected = authors.find((a) => a.id === authorItem.id)
+          const getBooks = response.body.map((e) => e.Books)
 
-          expect(author.author).to.equal(expected.author)
+          expect(authorItem.author).to.equal(expected.author)
+          expect(getBooks).to.not.equal(undefined)
         })
       })
     })
 
     describe('GET /authors/:id', () => {
-      it('gets authors record by id', async () => {
+      it('gets authors record by id with books', async () => {
         const authorItem = authors[0]
         const response = await request(app).get(`/authors/${authorItem.id}`)
 
         expect(response.status).to.equal(200)
         expect(response.body.author).to.equal(authorItem.author)
+        expect(response.body.Books).to.not.equal(undefined)
       })
 
       it('returns a 404 if the genre does not exist', async () => {

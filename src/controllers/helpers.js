@@ -102,6 +102,16 @@ const getItemById = (res, model, id) => {
         res.status(200).json(itemWithoutPassword)
       }
     })
+  } else if (Model === Author) {
+    return Model.findByPk(id, { include: Book }).then((item) => {
+      if (!item) {
+        res.status(404).json(get404Error(model))
+      } else {
+        const itemWithoutPassword = removePassword(item.dataValues)
+
+        res.status(200).json(itemWithoutPassword)
+      }
+    })
   } else {
     return Model.findByPk(id).then((item) => {
       if (!item) {
