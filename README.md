@@ -46,24 +46,29 @@ to install dependencies.
 
 Create .env:
 
+```json
 DB_PASSWORD=password
 DB_NAME=BOOK_LIBRARY_DEV
 DB_USER=root
 DB_HOST=localhost
 DB_PORT=3307
-PORT=3000
+PORT=300
+```0
 
 and .env.test files in the root directory:
-
+```json
 DB_PASSWORD=password
 DB_NAME=BOOK_LIBRARY_TEST
 DB_USER=root
 DB_HOST=localhost
 DB_PORT=3307
 PORT=3000
+```0
 
-
-Set up docker container with docker run -d -p 3307:3306 --name book_library_mysql -e MYSQL_ROOT_PASSWORD=password mysql
+Set up docker container with 
+```json
+docker run -d -p 3307:3306 --name book_library_mysql -e MYSQL_ROOT_PASSWORD=password mysql
+```
 
 Download the following dependencies: 
 
