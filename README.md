@@ -30,7 +30,9 @@ This app is public on Github and is also deployed on Render. On the link use /bo
 
 This app requires a MySQL database. Run
 
-$ npm i -S mysql2 
+```json
+$ npm i -S mysql2
+``` 
 
 in your terminal.
 
@@ -65,6 +67,7 @@ Set up docker container with docker run -d -p 3307:3306 --name book_library_mysq
 
 Download the following dependencies: 
 
+```json
 $ npx eslint --init
 $ npx prettier --write .
 $ npm i -S express
@@ -72,8 +75,11 @@ $ npm i -D nodemon
 $ npm i -D dotenv
 $ npm i -S mysql2
 $ npm i -D mocha chai supertest
+```
 
 ## Using the app
 
-To start the app on your localhost use $ npm start 
+To start the app on your localhost use ```json
+$ npm start 
+```
 
