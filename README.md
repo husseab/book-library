@@ -28,11 +28,19 @@ This app is public on Github and is also deployed on Render. On the link use /bo
 
 ## Running the app
 
-This app requires a MySQL database. Run $ npm i -S mysql2 in your terminal.
+This app requires a MySQL database. Run
 
-Run ```javascript
+$ npm i -S mysql2 
+
+in your terminal.
+
+Run 
+
+```json
 $ npm i
-``` to install dependencies.
+```
+
+to install dependencies.
 
 Create .env:
 
