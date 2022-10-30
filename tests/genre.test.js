@@ -11,9 +11,9 @@ describe('/genre', () => {
   })
 
   describe('with no records in the database', () => {
-    describe('POST /Genre', () => {
+    describe('POST /Genres', () => {
       it('creates a new Genre in the database', async () => {
-        const response = await request(app).post('/genre').send({
+        const response = await request(app).post('/genres').send({
           genre: 'Fiction'
         })
         const newGenreRecord = await Genre.findByPk(response.body.id, {
@@ -25,7 +25,7 @@ describe('/genre', () => {
         expect(newGenreRecord.genre).to.equal('Fiction')
       })
       it('does not create a new genre in the database--no title', async () => {
-        const response = await request(app).post('/genre').send({
+        const response = await request(app).post('/genres').send({
           genre: ''
         })
         const newGenreRecord = await Genre.findByPk(response.body.id, {
@@ -37,7 +37,7 @@ describe('/genre', () => {
         expect(response.body.errors.toString()).to.equal('Insert genre name')
       })
       it('does not create a new genre in the database--NULL', async () => {
-        const response = await request(app).post('/genre').send({
+        const response = await request(app).post('/genres').send({
           genre: null
         })
         const newGenreRecord = await Genre.findByPk(response.body.id, {
@@ -70,7 +70,7 @@ describe('/genre', () => {
 
     describe('GET /genre', () => {
       it('gets all genre records', async () => {
-        const response = await request(app).get('/genre')
+        const response = await request(app).get('/genres')
 
         const getBooks = response.body.map((e) => e.Books)
 
@@ -89,14 +89,14 @@ describe('/genre', () => {
     describe('GET /genre/:id', () => {
       it('gets genre record by id', async () => {
         const genreItem = genreArray[0]
-        const response = await request(app).get(`/genre/${genreItem.id}`)
+        const response = await request(app).get(`/genres/${genreItem.id}`)
 
         expect(response.status).to.equal(200)
         expect(response.body.genre).to.equal(genreItem.genre)
       })
 
       it('returns a 404 if the genre does not exist', async () => {
-        const response = await request(app).get('/genre/12345')
+        const response = await request(app).get('/genres/12345')
 
         expect(response.status).to.equal(404)
         expect(response.body.error).to.equal('The genre could not be found.')
@@ -107,7 +107,7 @@ describe('/genre', () => {
       it('updates genre name by id', async () => {
         const genreItem = genreArray[0]
         const response = await request(app)
-          .patch(`/genre/${genreItem.id}`)
+          .patch(`/genres/${genreItem.id}`)
           .send({ genre: 'UpdatedGenre' })
         const updatedGenreRecord = await Genre.findByPk(genreItem.id, {
           raw: true
@@ -119,7 +119,7 @@ describe('/genre', () => {
 
       it('returns a 404 if the genre does not exist', async () => {
         const response = await request(app)
-          .patch('/genre/12345')
+          .patch('/genres/12345')
           .send({ genre: 'UpdatedGenre' })
 
         expect(response.status).to.equal(404)
@@ -130,7 +130,7 @@ describe('/genre', () => {
     describe('DELETE /genre/:id', () => {
       it('deletes genre record by id', async () => {
         const genreItem = genreArray[0]
-        const response = await request(app).delete(`/genre/${genreItem.id}`)
+        const response = await request(app).delete(`/genres/${genreItem.id}`)
         const deletedGenre = await Genre.findByPk(genreItem.id, { raw: true })
 
         expect(response.status).to.equal(204)
@@ -138,7 +138,7 @@ describe('/genre', () => {
       })
 
       it('returns a 404 if the genre does not exist', async () => {
-        const response = await request(app).delete('/genre/12345')
+        const response = await request(app).delete('/genres/12345')
         expect(response.status).to.equal(404)
         expect(response.body.error).to.equal('The genre could not be found.')
       })

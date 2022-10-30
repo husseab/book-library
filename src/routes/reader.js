@@ -3,7 +3,7 @@ const readerController = require('../controllers/reader')
 
 const router = express.Router()
 
-router.route('/') 
+router.route('/')
   .post(readerController.createReader)
   .get(readerController.findAllReaders)
 

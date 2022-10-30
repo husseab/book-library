@@ -11,6 +11,6 @@ app.use(express.json())
 app.use('/readers', readerModel)
 app.use('/books', bookModel)
 app.use('/authors', authorModel)
-app.use('/genre', genreModel)
+app.use('/genres', genreModel)
 
 module.exports = app
