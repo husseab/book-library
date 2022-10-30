@@ -46,23 +46,25 @@ to install dependencies.
 
 Create .env:
 
-```json
+```console
 DB_PASSWORD=password
 DB_NAME=BOOK_LIBRARY_DEV
 DB_USER=root
 DB_HOST=localhost
 DB_PORT=3307
-PORT=300
-```0
+PORT=3000
+```
 
 and .env.test files in the root directory:
 
+```console
 DB_PASSWORD=password
 DB_NAME=BOOK_LIBRARY_TEST
 DB_USER=root
 DB_HOST=localhost
 DB_PORT=3307
 PORT=3000
+```
 
 
 Set up docker container with 
