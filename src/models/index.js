@@ -24,6 +24,7 @@ const setupDatabase = () => {
   Genre.hasMany(Book)
   Book.belongsTo(Author)
   Book.belongsTo(Genre)
+  Book.belongsTo(Reader)
 
   connection.sync({ alter: true })
   return {
