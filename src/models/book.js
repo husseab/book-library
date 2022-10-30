@@ -16,7 +16,12 @@ module.exports = (connection, DataTypes) => {
     },
     ISBN: DataTypes.STRING
   }
-
-  const BookModel = connection.define('Book', schema)
+  const RemoveTimeStamp = {
+    defaultScope: {
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    },
+    timestamps: false
+  }
+  const BookModel = connection.define('Book', schema, RemoveTimeStamp)
   return BookModel
 }

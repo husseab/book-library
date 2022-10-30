@@ -15,6 +15,12 @@ module.exports = (connection, DataTypes) => {
       }
     }
   }
-  const GenreModel = connection.define('Genre', schema)
+  const RemoveTimeStamp = {
+    defaultScope: {
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    },
+    timestamps: false
+  }
+  const GenreModel = connection.define('Genre', schema, RemoveTimeStamp)
   return GenreModel
 }

@@ -25,7 +25,12 @@ module.exports = (connection, DataTypes) => {
       }
     }
   }
-
-  const ReaderModel = connection.define('Reader', schema)
+  const RemoveTimeStamp = {
+    defaultScope: {
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    },
+    timestamps: false
+  }
+  const ReaderModel = connection.define('Reader', schema, RemoveTimeStamp)
   return ReaderModel
 }

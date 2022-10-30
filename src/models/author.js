@@ -15,7 +15,13 @@ module.exports = (connection, DataTypes) => {
       }
     }
   }
+  const RemoveTimeStamp = {
+    defaultScope: {
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    },
+    timestamps: false
+  }
 
-  const AuthorModel = connection.define('Author', schema)
+  const AuthorModel = connection.define('Author', schema, RemoveTimeStamp)
   return AuthorModel
 }
