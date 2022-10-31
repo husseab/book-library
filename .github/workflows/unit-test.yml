@@ -18,8 +18,8 @@ jobs:
 
     steps:
 
-        - name: Setup Runner Database
-         run: |
+      - name: Setup Runner Database
+        run: |
               mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS db1;'
               mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS db2;'
       - uses: actions/checkout@v3
