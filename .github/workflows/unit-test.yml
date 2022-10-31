@@ -22,10 +22,11 @@ jobs:
 
     steps:
 
-      - run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE BOOK_LIBRARY_DEV;' -uroot -ppassword
-          mysql -e 'SHOW DATABASES;' -uroot -ppassword
+      - name: Verify MySQL connection
+        run: |
+          mysql --version
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
