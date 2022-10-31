@@ -15,6 +15,7 @@ jobs:
         node-version: [15.x]
     
     env:
+      DB_DATABASE: BOOK_LIBRARY_DEV
       DB_USER: root
       DB_PASSWORD: 'password'
       DB_HOST: localhost
