@@ -8,7 +8,7 @@ const path = require('path');
 const args = process.argv.slice(2)[0];
 
 // use args to determine if .env or .env.test should be loaded
-const envFile = args === '../.env';
+const envFile = args === 'test' ? '../.env.test' : '../.env';
 
 // load environment variables from env files
 require('dotenv').config({
@@ -32,7 +32,6 @@ const setUpDatabase = async () => {
 
     // create the database if it doesn't already exist
     await db.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`);
-    await db.query(`USE ${DB_NAME}`);
 
     db.end();
 
