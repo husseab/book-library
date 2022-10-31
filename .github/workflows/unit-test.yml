@@ -29,7 +29,8 @@ jobs:
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
           mysql -e 'SHOW DATABASES;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-                - name: Cancel previous runs of this workflow
+      
+      - name: Cancel previous runs of this workflow
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
