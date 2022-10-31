@@ -8,7 +8,7 @@ const path = require('path');
 const args = process.argv.slice(2)[0];
 
 // use args to determine if .env or .env.test should be loaded
-const envFile = args === 'test' ? '../.env.test' : '../.env';
+const envFile = args === '../.env';
 
 // load environment variables from env files
 require('dotenv').config({
