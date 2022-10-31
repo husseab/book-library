@@ -27,8 +27,8 @@ jobs:
           mysql --version
           sudo apt-get install -y mysql-client
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE BOOK_LIBRARY_DEV;' -uroot -ppassword
-          mysql -e 'SHOW DATABASES;' -uroot -ppassword
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          mysql -e 'SHOW DATABASES;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
