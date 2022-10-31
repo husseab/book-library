@@ -15,11 +15,12 @@ jobs:
         node-version: [15.x]
     
     env:
-      DB_NAME: BOOK_LIBRARY_DEV
-      DB_USER: root
-      DB_PASSWORD: 'password'
-      DB_HOST: localhost
-      DB_PORT: 3307
+
+      DB_PASSWORD: 'password',
+      DB_NAME: 'BOOK_LIBRARY_DEV',
+      DB_USER: 'root',
+      DB_HOST: 'localhost',
+      DB_PORT: '3307'
 
     steps:
 
