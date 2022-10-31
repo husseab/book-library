@@ -20,7 +20,7 @@ jobs:
       DB_NAME: 'BOOK_LIBRARY_DEV'
       DB_USER: 'root'
       DB_HOST: 'localhost'
-      DB_PORT: '3307'
+      DB_PORT: 3307
 
     steps:
 
