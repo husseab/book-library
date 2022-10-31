@@ -14,8 +14,14 @@ jobs:
       matrix:
         node-version: [15.x]
     
-    steps:
+    env:
+      DB_DATABASE: BOOK_LIBRARY_DEV
+      DB_USER: root
+      DB_PASSWORD: 'password'
+      DB_HOST: localhost
+      DB_PORT: 3307
 
+    steps:
 
       - uses: mirromutth/mysql-action@v1.1
         with:
