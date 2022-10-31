@@ -15,17 +15,17 @@ jobs:
         node-version: [15.x]
     
     env:
-      DB_DATABASE: wordpress_test
+      DB_DATABASE: BOOK_LIBRARY_DEV
       DB_USER: root
-      DB_PASSWORD: 'root'
+      DB_PASSWORD: 'password'
       DB_HOST: localhost
 
     steps:
         steps:
       - run: |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE wordpress_test;' -uroot -proot
-          mysql -e 'SHOW DATABASES;' -uroot -proot
+          mysql -e 'CREATE DATABASE BOOK_LIBRARY_DEV;' -uroot -ppassword
+          mysql -e 'SHOW DATABASES;' -uroot -ppassword
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
