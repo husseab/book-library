@@ -53,8 +53,8 @@ jobs:
       - run: npm run build --if-present
       - healthcheck:
         test: mysqladmin ping -h 127.0.0.1 -u root --password=password
-         interval: 30s
-         timeout: 30s
+         intervalseconds: 30
+         timeout: 30
          retries: 55
 
       - run: npm test
