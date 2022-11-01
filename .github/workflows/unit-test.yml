@@ -50,12 +50,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - name: Wait for build to succeed
+      - name: Wait for mysql to succeed
         uses: fountainhead/action-wait-for-check@v1.1.0
-        id: wait-for-build
+        id: wait-for-mysql
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: build
+          checkName: mysql
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           intervalseconds: 30
 
