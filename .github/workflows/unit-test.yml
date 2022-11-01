@@ -43,19 +43,14 @@ jobs:
           mysql database: 'BOOK_LIBRARY_DEV' # Optional, default value is "test". The specified database which will be create
           mysql user: 'root' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
           mysql password: 'password' # Required if "mysql user" exists. The password for the "mysql user"
-          intervalseconds: 30
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          intervalseconds: 30
       - run: npm ci
       - run: npm run build --if-present
-        healthcheck:
-          test: "mirromutth/mysql-action@v1.1 --user=root --password=rootpasswd --execute \"SHOW DATABASES;\""
-           interval: 2s
-           timeout: 20s
-           retries: 10
 
       - run: npm test
 
