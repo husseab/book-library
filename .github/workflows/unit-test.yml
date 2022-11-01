@@ -43,6 +43,7 @@ jobs:
           mysql database: 'BOOK_LIBRARY_DEV' # Optional, default value is "test". The specified database which will be create
           mysql user: 'root' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
           mysql password: 'password' # Required if "mysql user" exists. The password for the "mysql user"
+          intervalseconds: 30
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -50,14 +51,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - name: Wait for mysql to succeed
-        uses: fountainhead/action-wait-for-check@v1.1.0
-        id: wait-for-mysql
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: mysql
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          intervalseconds: 30
+      - healthcheck:
+        test: mysqladmin ping -h 127.0.0.1 -u root --password=password
+         start_period: 30s
+         interval: 30s
+         timeout: 30s
+         retries: 55
 
       - run: npm test
 
