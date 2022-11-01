@@ -52,7 +52,7 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
         healthcheck:
-          test: "/usr/bin/mysql --user=root --password=rootpasswd --execute \"SHOW DATABASES;\""
+          test: "mirromutth/mysql-action@v1.1 --user=root --password=rootpasswd --execute \"SHOW DATABASES;\""
            interval: 2s
            timeout: 20s
            retries: 10
