@@ -51,11 +51,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - healthcheck:
-         test: mysqladmin ping -h 127.0.0.1 -uroot --password=password
-          intervalseconds: 30
-          timeout: 30
-          retries: 55
+        healthcheck:
+          test: "/usr/bin/mysql --user=root --password=rootpasswd --execute \"SHOW DATABASES;\""
+           interval: 2s
+           timeout: 20s
+           retries: 10
 
       - run: npm test
 
