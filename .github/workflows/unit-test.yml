@@ -22,7 +22,7 @@ jobs:
       DB_HOST: 'localhost'
       DB_PORT: 3307
       Port: 3000
-      DB_DIALECT: mysql2
+      DB_DIALECT: mysql
 
 # Your environment variables might be wrong. Please double check .env file
 # Environment Variables are: {
@@ -42,7 +42,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - run: docker-compose up -d mysql2
+      - run: docker-compose up -d mysql
       - run: docker run --link ${DIALECT}:db -e CHECK_PORT=${SEQ_PORT::-1} -e CHECK_HOST=db --net cli_default giorgos/takis
       - run: npm test
 
