@@ -24,13 +24,7 @@ jobs:
       Port: 3000
       DIALECT: mysql
 
-# Your environment variables might be wrong. Please double check .env file
-# Environment Variables are: {
-#   DB_PASSWORD: 'password',
-#   DB_NAME: 'BOOK_LIBRARY_DEV',
-#   DB_USER: 'root',
-#   DB_HOST: 'localhost',
-#   DB_PORT: '3307'
+
 
     steps:
 
