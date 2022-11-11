@@ -38,19 +38,15 @@ jobs:
           mysql user: 'root' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
           mysql password: 'password' # Required if "mysql user" exists. The password for the "mysql user"
       - run: sleep 30
-      - uses: actions/checkout@v3
+      - run: npm install sequelize@${{ matrix.sequelize-version }} 
       - run: sleep 30
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sleep 30
       - run: npm ci
-      - run: sleep 30
       - run: npm run build --if-present
-      - run: sleep 30
-      - run: npm install sequelize@${{ matrix.sequelize-version }} 
-      - run: sleep 30
       - run: npm test
 
     
