@@ -9,7 +9,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/', (_, res) => {
-  res.status(200).json({ result: 'Welcome to the Back End API! Use /books, /authors, /genres and /readers paths to see what is available.' })
+  res.status(200).json({ result: 'Welcome to the Back End API for Book Library App! Use /books, /authors, /genres and /readers paths to see what is available.' })
 })
 
 app.use('/readers', readerModel)
