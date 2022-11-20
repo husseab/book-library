@@ -1,7 +1,6 @@
 # Book library
 
-This is a book library app desgined to store books and associated authors, genres and reader records in a database.
-This app is public on Github and is also deployed on Render. On the link below use /books, /authors, /genres and /readers paths to see what is available, see -->  https://book-library-hprd.onrender.com .
+This is a backend API for book library app desgined to store books and associated authors, genres and reader records in a database.This API is public on Github and is also deployed on Render. On the link below use /books, /authors, /genres and /readers paths to see what is available, see -->  https://book-library-hprd.onrender.com .
 
 
 ## Dependencies used
@@ -28,7 +27,7 @@ This app is public on Github and is also deployed on Render. On the link below u
 
 ## Running the app
 
-This app requires a MySQL database. Run
+This API requires a MySQL database. Run
 
 ```
 $ npm i -S mysql2
