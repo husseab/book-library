@@ -10,6 +10,5 @@
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "plugins": ["react"],
   "rules": {}
 }
