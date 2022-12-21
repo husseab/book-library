@@ -1,6 +1,6 @@
 # Book library
 
-This is a backend API for book library app desgined to store books and associated authors, genres and reader records in a database.This API is public on Github and is also deployed on Render. On the link below use /books, /authors, /genres and /readers paths to see what is available, see -->  https://book-library-hprd.onrender.com .
+This is a backend API for book library app desgined to store books and associated authors, genres and reader records in a database.This API is public on Github and is also deployed on Render. On the link below use /books, /authors, /genres and /readers paths to see what is available, see -->  https://book-library-hprd.onrender.com . ( The link is temporarily inactive due to hosting a database https://javascript-quiz.onrender.com for my other project. Free membership allows hosting one active database. )
 
 
 ## Dependencies used
